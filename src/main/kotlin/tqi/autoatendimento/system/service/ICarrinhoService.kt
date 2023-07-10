@@ -4,9 +4,9 @@ import tqi.autoatendimento.system.entity.Carrinho
 
 interface ICarrinhoService {
 
-    fun save(carrinho: Carrinho): Carrinho
+    fun saveCarrinho(carrinho: Carrinho)
 
-    fun findCarrinho(carrinho: Carrinho): Carrinho
+    fun findCarrinho(): List<Carrinho>
 
     fun delete(carrinho: Carrinho): Carrinho
 }

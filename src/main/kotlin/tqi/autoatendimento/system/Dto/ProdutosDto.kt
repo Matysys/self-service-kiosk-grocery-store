@@ -10,20 +10,22 @@ data class ProdutosDto(
     @Size(max = 30)
     val nome: String = "",
     @NotBlank
-    @Size(max = 30)
     val unidadeDeMedida: String = "",
     @NotBlank
-    @Size(max = 30)
     val precoUnitario: BigDecimal,
     @NotBlank
     @Size(max = 30)
     val categoria: String = "",
+    @NotBlank
+    val quantidade: Int
+
 
 ){
     fun toEntity(): Produtos = Produtos(
         nome = this.nome,
         unidadeDeMedida = this.unidadeDeMedida,
         precoUnitario = this.precoUnitario,
-        categoria = this.categoria
+        categoria = this.categoria,
+        quantidade = this.quantidade
     )
 }
