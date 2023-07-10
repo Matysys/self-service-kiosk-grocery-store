@@ -8,6 +8,10 @@ interface ICategoriaService {
 
     fun findById(id: Long): Categoria
 
-    fun findAllCategoria(categoria: Categoria): List<Categoria>
+    fun findAllCategoria(): List<Categoria>
+
+    fun deleteById(id: Long)
+
+    fun deleteAll()
 
 }
