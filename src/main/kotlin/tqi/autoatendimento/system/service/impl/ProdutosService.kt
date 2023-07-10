@@ -10,18 +10,27 @@ import tqi.autoatendimento.system.service.IProdutosService
 class ProdutosService(private val produtosRepository: ProdutosRepository): IProdutosService {
 
     override fun save(produtos: Produtos): Produtos {
-        TODO("Not yet implemented")
+        return this.produtosRepository.save(produtos)
     }
 
-    override fun findAllByCategoria(categoria: Categoria): List<Produtos> {
-        TODO("Not yet implemented")
+    override fun findAllByCategoria(categoria: String): List<Produtos> {
+        return this.produtosRepository.findAllByCategoria(categoria)
     }
 
     override fun findById(id: Long): Produtos {
         TODO("Not yet implemented")
     }
 
-    override fun delete(id: Long): Produtos {
-        TODO("Not yet implemented")
+    override fun findAllProdutos(): List<Produtos> {
+        return this.produtosRepository.findAll()
+    }
+
+    override fun findAllProdutosByName(nome: String): List<Produtos> {
+        return this.produtosRepository.findAllByNome(nome)
+    }
+
+
+    override fun delete(id: Long) {
+        this.produtosRepository.deleteById(id)
     }
 }
