@@ -21,6 +21,9 @@ interface CarrinhoRepository: JpaRepository<Carrinho, Long> {
     @Query(value = "SELECT * FROM carrinho", nativeQuery = true)
     fun findAllProdutos(): List<Carrinho>
 
-
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE carrinho SET quantidade_produto = :quantidadeProduto, preco_produto = :precoProduto WHERE nome_produto = :nomeProduto", nativeQuery = true)
+    fun update(@Param("nomeProduto") nomeProduto: String, @Param("quantidadeProduto") quantidadeProduto: Int, @Param("precoProduto") precoProduto: BigDecimal)
 
 }

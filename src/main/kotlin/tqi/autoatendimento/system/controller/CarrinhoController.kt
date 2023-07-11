@@ -23,4 +23,20 @@ class CarrinhoController(private val carrinhoService: CarrinhoService) {
         return carrinho
     }
 
+    @PatchMapping("/update")
+    fun updateCarrinho(@RequestBody carrinhoDto: CarrinhoDto): String{
+        this.carrinhoService.updateCarrinho(carrinhoDto.toEntity())
+        return "O carrinho foi alterado com sucesso."
+    }
+
+    @DeleteMapping("/{id}")
+    fun deleteCarrinhoById(@PathVariable id: Long){
+        this.carrinhoService.deleteById(id)
+    }
+
+    @DeleteMapping
+    fun deleteCarrinhoById(){
+        this.carrinhoService.deleteAll()
+    }
+
 }

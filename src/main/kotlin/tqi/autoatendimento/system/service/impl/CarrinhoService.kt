@@ -15,12 +15,23 @@ class CarrinhoService(private val carrinhoRepository: CarrinhoRepository
         this.carrinhoRepository.save(carrinho)
     }
 
+    override fun updateCarrinho(carrinho: Carrinho) {
+        carrinho.precoProduto = this.produtosRepository.calcularPreco(carrinho.nomeProduto, carrinho.quantidadeProduto)
+        this.carrinhoRepository.update(carrinho.nomeProduto, carrinho.quantidadeProduto, carrinho.precoProduto)
+    }
+
+
     override fun findCarrinho(): List<Carrinho> {
         return this.carrinhoRepository.findAllProdutos()
     }
 
-    override fun delete(carrinho: Carrinho){
-        TODO("Not yet implemented")
+    override fun deleteById(id: Long) {
+        this.carrinhoRepository.deleteById(id)
+    }
+
+
+    override fun deleteAll(){
+        this.carrinhoRepository.deleteAll()
     }
 
 }

@@ -21,7 +21,7 @@ class ProdutosController(private val produtosService: ProdutosService) {
     }
 
     @GetMapping("/{categoria}")
-    fun getProdutosByCategoria(@PathVariable categoria: String): Optional<List<Produtos>> {
+    fun getProdutosByCategoria(@PathVariable @Valid categoria: String): Optional<List<Produtos>> {
         val categoria: List<Produtos> = this.produtosService.findAllByCategoria(categoria)
         return Optional.of(categoria)
     }
@@ -33,7 +33,7 @@ class ProdutosController(private val produtosService: ProdutosService) {
     }
 
     @GetMapping("/busca/{nome}")
-    fun getProdutosByNome(@PathVariable nome: String): Optional<List<Produtos>> {
+    fun getProdutosByNome(@PathVariable @Valid nome: String): Optional<List<Produtos>> {
         val produtos: List<Produtos> = this.produtosService.findAllProdutosByName(nome)
         return Optional.of(produtos)
     }
