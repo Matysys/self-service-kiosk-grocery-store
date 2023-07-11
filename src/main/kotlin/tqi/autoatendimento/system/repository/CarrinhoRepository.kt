@@ -12,9 +12,15 @@ import java.math.BigDecimal
 @Repository
 interface CarrinhoRepository: JpaRepository<Carrinho, Long> {
 
-    @Transactional
+    /*@Transactional
     @Modifying
     @Query(value = "INSERT INTO carrinho (nome_produto, quantidade_produto, preco_produto) VALUES (:nome, :quantidade, :precoProduto)", nativeQuery = true)
-    fun saveCarrinho(@Param("nome") nome: String, @Param("quantidade") quantidade: Int, @Param("precoProduto") precoProduto: BigDecimal)
+    fun saveCarrinho(@Param("nome") nome: String, @Param("quantidade") quantidade: Int, @Param("precoProduto") precoProduto: BigDecimal) */
+
+    //Não utilizei na instrução JPA na instrução abaixo porque coloquei uma tabela adicional via Flyway Migrations para calcular os preços
+    @Query(value = "SELECT * FROM carrinho", nativeQuery = true)
+    fun findAllProdutos(): List<Carrinho>
+
+
 
 }

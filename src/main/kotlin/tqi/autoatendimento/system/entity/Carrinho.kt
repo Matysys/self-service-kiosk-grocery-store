@@ -10,5 +10,7 @@ data class Carrinho(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     @Column(nullable = false, length = 20) val nomeProduto: String,
-    @Column(nullable = false) val quantidadeProduto: Int
+    @Column(nullable = false) val quantidadeProduto: Int,
+    @Column(nullable = false) var precoProduto: BigDecimal = BigDecimal.ZERO
+
 )

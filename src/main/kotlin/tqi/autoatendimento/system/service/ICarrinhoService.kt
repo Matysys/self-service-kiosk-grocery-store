@@ -8,5 +8,5 @@ interface ICarrinhoService {
 
     fun findCarrinho(): List<Carrinho>
 
-    fun delete(carrinho: Carrinho): Carrinho
+    fun delete(carrinho: Carrinho)
 }

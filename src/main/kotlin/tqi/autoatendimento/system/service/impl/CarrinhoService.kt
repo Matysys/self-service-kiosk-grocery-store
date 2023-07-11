@@ -11,15 +11,15 @@ import java.math.BigDecimal
 class CarrinhoService(private val carrinhoRepository: CarrinhoRepository
 , private val produtosRepository: ProdutosRepository): ICarrinhoService {
     override fun saveCarrinho(carrinho: Carrinho) {
-        val valorProdutos: BigDecimal = this.produtosRepository.calcularPreco(carrinho.nomeProduto, carrinho.quantidadeProduto)
-        return this.carrinhoRepository.saveCarrinho(carrinho.nomeProduto, carrinho.quantidadeProduto, valorProdutos)
+        carrinho.precoProduto = this.produtosRepository.calcularPreco(carrinho.nomeProduto, carrinho.quantidadeProduto)
+        this.carrinhoRepository.save(carrinho)
     }
 
     override fun findCarrinho(): List<Carrinho> {
-        return this.carrinhoRepository.findAll()
+        return this.carrinhoRepository.findAllProdutos()
     }
 
-    override fun delete(carrinho: Carrinho): Carrinho {
+    override fun delete(carrinho: Carrinho){
         TODO("Not yet implemented")
     }
 
