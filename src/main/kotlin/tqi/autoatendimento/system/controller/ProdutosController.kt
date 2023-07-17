@@ -49,4 +49,10 @@ class ProdutosController(private val produtosService: ProdutosService) {
         else return ResponseEntity.status(HttpStatus.OK).body(response)
     }
 
+    @DeleteMapping("/{id}")
+    fun deleteProdutoById(@PathVariable id: Long): ResponseEntity<String>{
+        this.produtosService.delete(id)
+        return ResponseEntity.status(HttpStatus.OK).body("Produto de ID:$id excluído com sucesso.")
+    }
+
 }
