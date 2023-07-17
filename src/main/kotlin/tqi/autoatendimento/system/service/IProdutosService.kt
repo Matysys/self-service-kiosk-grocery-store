@@ -15,5 +15,7 @@ interface IProdutosService {
 
     fun findAllProdutosByName(nome: String): List<Produtos>
 
+    fun editProdutos(produto: Produtos): String
+
     fun delete(id: Long)
 }

@@ -3,6 +3,7 @@ package tqi.autoatendimento.system.controller
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 import tqi.autoatendimento.system.Dto.CategoriaDto
+import tqi.autoatendimento.system.Dto.ProdutosAlterarDto
 import tqi.autoatendimento.system.Dto.ProdutosDto
 import tqi.autoatendimento.system.entity.Categoria
 import tqi.autoatendimento.system.entity.Produtos
@@ -36,6 +37,11 @@ class ProdutosController(private val produtosService: ProdutosService) {
     fun getProdutosByNome(@PathVariable @Valid nome: String): Optional<List<Produtos>> {
         val produtos: List<Produtos> = this.produtosService.findAllProdutosByName(nome)
         return Optional.of(produtos)
+    }
+
+    @PutMapping("/alterar")
+    fun editProduto(@RequestBody @Valid produtosAlterarDto: ProdutosAlterarDto): String {
+        return produtosService.editProdutos(produtosAlterarDto.toEntity())
     }
 
 }
