@@ -1,6 +1,8 @@
 package tqi.autoatendimento.system.controller
 
 import jakarta.validation.Valid
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import tqi.autoatendimento.system.Dto.CarrinhoDto
 import tqi.autoatendimento.system.entity.Carrinho
@@ -12,21 +14,23 @@ import tqi.autoatendimento.system.service.impl.CarrinhoService
 class CarrinhoController(private val carrinhoService: CarrinhoService) {
 
     @PostMapping()
-    fun saveCarrinho(@RequestBody @Valid carrinhoDto: CarrinhoDto): String{
+    fun saveCarrinho(@RequestBody @Valid carrinhoDto: CarrinhoDto): ResponseEntity<String>{
         this.carrinhoService.saveCarrinho(carrinhoDto.toEntity())
-        return "O carrinho foi atualizado com sucesso."
+        val response = "O carrinho foi atualizado com sucesso."
+        return ResponseEntity.status(HttpStatus.OK).body(response)
     }
 
     @GetMapping
-    fun getCarrinho(): List<Carrinho>{
+    fun getCarrinho(): ResponseEntity<List<Carrinho>>{
         val carrinho: List<Carrinho> = this.carrinhoService.findCarrinho()
-        return carrinho
+        return ResponseEntity.status(HttpStatus.OK).body(carrinho)
     }
 
     @PatchMapping("/update")
-    fun updateCarrinho(@RequestBody carrinhoDto: CarrinhoDto): String{
+    fun updateCarrinho(@RequestBody carrinhoDto: CarrinhoDto): ResponseEntity<String>{
         this.carrinhoService.updateCarrinho(carrinhoDto.toEntity())
-        return "O carrinho foi alterado com sucesso."
+        val response = "O carrinho foi alterado com sucesso."
+        return ResponseEntity.status(HttpStatus.OK).body(response)
     }
 
     @DeleteMapping("/{id}")
@@ -35,7 +39,7 @@ class CarrinhoController(private val carrinhoService: CarrinhoService) {
     }
 
     @DeleteMapping
-    fun deleteCarrinhoById(){
+    fun deleteCarrinho(){
         this.carrinhoService.deleteAll()
     }
 

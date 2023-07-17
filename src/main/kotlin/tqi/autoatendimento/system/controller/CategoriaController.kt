@@ -1,6 +1,7 @@
 package tqi.autoatendimento.system.controller
 
 import jakarta.validation.Valid
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import tqi.autoatendimento.system.Dto.CategoriaDto
@@ -14,33 +15,36 @@ import java.util.*
 class CategoriaController(private val categoriaService: CategoriaService) {
 
     @PostMapping
-    fun saveCategoria(@RequestBody @Valid categoriaDto: CategoriaDto): String{
-        val categoria = this.categoriaService.save(categoriaDto.toEntity())
-        return "A categoria '${categoria.nome}' foi adicionada com sucesso!"
+    fun saveCategoria(@RequestBody @Valid categoriaDto: CategoriaDto): ResponseEntity<String>{
+        val categoria: Categoria = this.categoriaService.save(categoriaDto.toEntity())
+        val response: String = "A categoria '${categoria.nome}' foi adicionada com sucesso!"
+        return ResponseEntity.status(HttpStatus.OK).body(response)
     }
 
     @GetMapping("/{id}")
-    fun getCategoriaById(@PathVariable id: Long): Optional<Categoria> {
+    fun getCategoriaById(@PathVariable id: Long): ResponseEntity<Optional<Categoria>> {
         val categoria: Optional<Categoria> = Optional.of(this.categoriaService.findById(id))
-        return categoria
+        return ResponseEntity.status(HttpStatus.OK).body(categoria)
     }
 
     @GetMapping
-    fun getAllCategoria(): Optional<List<Categoria>> {
+    fun getAllCategoria(): ResponseEntity<Optional<List<Categoria>>> {
         val categorias: List<Categoria> = this.categoriaService.findAllCategoria()
-        return Optional.of(categorias)
+        return ResponseEntity.status(HttpStatus.OK).body(Optional.of(categorias))
     }
 
     @DeleteMapping("/{id}")
-    fun deleteCategoriaById(@PathVariable id: Long): String{
+    fun deleteCategoriaById(@PathVariable id: Long): ResponseEntity<String>{
         this.categoriaService.deleteById(id)
-        return "Categoria de número $id deletada com sucesso"
+        val response = "Categoria de número $id deletada com sucesso"
+        return ResponseEntity.status(HttpStatus.OK).body(response)
     }
 
     @DeleteMapping
-    fun deleteAllCategoria(): String{
+    fun deleteAllCategoria(): ResponseEntity<String>{
         this.categoriaService.deleteAll()
-        return "Todas as categorias foram deletadas com sucesso"
+        val response = "Todas as categorias foram deletadas com sucesso"
+        return ResponseEntity.status(HttpStatus.OK).body(response)
     }
 
 
