@@ -10,6 +10,7 @@ import tqi.autoatendimento.system.Dto.ProdutosDto
 import tqi.autoatendimento.system.entity.Categoria
 import tqi.autoatendimento.system.entity.Produtos
 import tqi.autoatendimento.system.service.impl.ProdutosService
+import java.lang.IllegalArgumentException
 import java.util.*
 
 @RestController
@@ -19,9 +20,13 @@ class ProdutosController(private val produtosService: ProdutosService) {
 
     @PostMapping
     fun saveProduto(@RequestBody @Valid produtosDto: ProdutosDto): ResponseEntity<String>{
-        val produto: Produtos = this.produtosService.save(produtosDto.toEntity())
-        val response: String = "O produto '${produto.nome}' foi adicionado com sucesso!"
-        return ResponseEntity.status(HttpStatus.OK).body(response)
+        try {
+            val produto: Produtos = this.produtosService.save(produtosDto.toEntity())
+            val response: String = "O produto '${produto.nome}' foi adicionado com sucesso!"
+            return ResponseEntity.status(HttpStatus.OK).body(response)
+        }catch(e: IllegalArgumentException){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.message)
+        }
     }
 
     @GetMapping("/{categoria}")
