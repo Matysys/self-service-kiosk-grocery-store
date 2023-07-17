@@ -1,4 +1,4 @@
-package tqi.autoatendimento.system.entity
+package tqi.autoatendimento.system.enum
 
 enum class FormaPagamento {
     CARTAO_CREDITO,
