@@ -42,6 +42,12 @@ class ProdutosController(private val produtosService: ProdutosService) {
         return ResponseEntity.status(HttpStatus.OK).body(Optional.of(produtos))
     }
 
+    @GetMapping("/busca")
+    fun getProdutosById(@RequestParam("id") @Valid id: Long): Optional<Produtos>{
+        return this.produtosService.findById(id)
+
+    }
+
     @PutMapping("/alterar")
     fun editProduto(@RequestBody @Valid produtosAlterarDto: ProdutosAlterarDto): ResponseEntity<String> {
         var response: String = produtosService.editProdutos(produtosAlterarDto.toEntity())

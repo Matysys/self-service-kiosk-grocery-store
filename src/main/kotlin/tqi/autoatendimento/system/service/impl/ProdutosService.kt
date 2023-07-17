@@ -5,6 +5,7 @@ import tqi.autoatendimento.system.entity.Categoria
 import tqi.autoatendimento.system.entity.Produtos
 import tqi.autoatendimento.system.repository.ProdutosRepository
 import tqi.autoatendimento.system.service.IProdutosService
+import java.util.*
 
 @Service
 class ProdutosService(private val produtosRepository: ProdutosRepository): IProdutosService {
@@ -17,8 +18,8 @@ class ProdutosService(private val produtosRepository: ProdutosRepository): IProd
         return this.produtosRepository.findAllByCategoria(categoria)
     }
 
-    override fun findById(id: Long): Produtos {
-        TODO("Not yet implemented")
+    override fun findById(id: Long): Optional<Produtos> {
+        return this.produtosRepository.findById(id)
     }
 
     override fun findAllProdutos(): List<Produtos> {
