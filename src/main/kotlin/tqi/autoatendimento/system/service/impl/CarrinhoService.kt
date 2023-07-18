@@ -24,7 +24,7 @@ class CarrinhoService(private val carrinhoRepository: CarrinhoRepository
     }
 
     override fun updateCarrinho(carrinho: Carrinho) {
-        carrinho.precoProduto = this.produtosRepository.calcularPreco(carrinho.id!!, carrinho.nomeProduto, carrinho.quantidadeProduto)
+        carrinho.precoProduto = this.produtosRepository.calcularPreco(carrinho.idProduto!!, carrinho.nomeProduto, carrinho.quantidadeProduto)
         this.carrinhoRepository.update(carrinho.nomeProduto, carrinho.quantidadeProduto, carrinho.precoProduto)
     }
 

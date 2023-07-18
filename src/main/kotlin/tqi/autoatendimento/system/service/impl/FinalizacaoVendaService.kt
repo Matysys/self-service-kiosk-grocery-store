@@ -16,8 +16,10 @@ class FinalizacaoVendaService(private val carrinhoService: CarrinhoService, priv
 
         for (item: Carrinho in carrinho) {
             valorTotal += item.precoProduto
-            val a: Int = this.produtosRepository.removerEstoqueProduto(item.id!!, item.quantidadeProduto)
+            this.produtosRepository.removerEstoqueProduto(item.idProduto!!, item.quantidadeProduto)
         }
+
+        this.carrinhoService.deleteAll()
 
 
         return valorTotal
