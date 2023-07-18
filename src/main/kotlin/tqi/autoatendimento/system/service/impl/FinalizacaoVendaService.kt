@@ -3,10 +3,11 @@ package tqi.autoatendimento.system.service.impl
 import org.springframework.stereotype.Service
 import tqi.autoatendimento.system.entity.Carrinho
 import tqi.autoatendimento.system.enum.FormaPagamento
+import tqi.autoatendimento.system.repository.ProdutosRepository
 import java.math.BigDecimal
 
 @Service
-class FinalizacaoVendaService(private val carrinhoService: CarrinhoService) {
+class FinalizacaoVendaService(private val carrinhoService: CarrinhoService, private val produtosRepository: ProdutosRepository) {
 
     fun finalizarVendaPreco(): BigDecimal{
         val carrinho: List<Carrinho> = this.carrinhoService.findCarrinho()
@@ -15,7 +16,9 @@ class FinalizacaoVendaService(private val carrinhoService: CarrinhoService) {
 
         for (item: Carrinho in carrinho) {
             valorTotal += item.precoProduto
+            val a: Int = this.produtosRepository.removerEstoqueProduto(item.id!!, item.quantidadeProduto)
         }
+
 
         return valorTotal
 

@@ -35,4 +35,9 @@ interface ProdutosRepository: JpaRepository<Produtos, Long> {
     @Query(value = "SELECT quantidade FROM produtos WHERE id = :id", nativeQuery = true)
     fun verificarQntProdutos(@Param("id") id: Long): Int
 
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE produtos SET quantidade = quantidade - :quantidade WHERE id = :id", nativeQuery = true)
+    fun removerEstoqueProduto(@Param("id") id: Long, @Param("quantidade") quantidade: Int): Int
+
 }
