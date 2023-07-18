@@ -48,8 +48,8 @@ class ProdutosController(private val produtosService: ProdutosService) {
     }
 
     @GetMapping("/busca")
-    fun getProdutosById(@RequestParam("id") @Valid id: Long): Optional<Produtos>{
-        return this.produtosService.findById(id)
+    fun getProdutosById(@RequestParam("id") @Valid id: Long): ResponseEntity<Optional<Produtos>>{
+        return ResponseEntity.status(HttpStatus.OK).body(this.produtosService.findById(id))
 
     }
 
