@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  jumarket-autoatendimento:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_autoatendimento
+      - SPRING_DATASOURCE_USERNAME=jumarket
+      - SPRING_DATASOURCE_PASSWORD=jumarket123
+    depends_on:
+      - db
+    command: ["sh", "-c", "sleep 30 && java -jar app.jar"]
+  db:
+    image: mysql:latest
+    command: --bind-address=0.0.0.0
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=jumarket123
+      - MYSQL_DATABASE=db_autoatendimento
+    ports:
+      - "3306:3306"
