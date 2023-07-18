@@ -3,6 +3,7 @@ package tqi.autoatendimento.system.Dto
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
 import tqi.autoatendimento.system.entity.Produtos
+import tqi.autoatendimento.system.enum.UnidadeMedida
 import java.math.BigDecimal
 
 data class ProdutosDto(
@@ -10,7 +11,7 @@ data class ProdutosDto(
     @Size(max = 30)
     val nome: String = "",
     @NotBlank
-    val unidadeDeMedida: String = "",
+    val unidadeDeMedida: UnidadeMedida,
     @NotBlank
     val precoUnitario: BigDecimal,
     @NotBlank

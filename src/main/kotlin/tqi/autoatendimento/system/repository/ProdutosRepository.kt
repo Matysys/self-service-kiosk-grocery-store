@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 import tqi.autoatendimento.system.entity.Produtos
+import tqi.autoatendimento.system.enum.UnidadeMedida
 import java.math.BigDecimal
 
 @Repository
@@ -27,7 +28,7 @@ interface ProdutosRepository: JpaRepository<Produtos, Long> {
             "preco_unitario = :precoUnitario, categoria = :categoria, quantidade = :quantidade WHERE id = :id", nativeQuery = true)
     fun editProdutos(@Param("id") id: Long,
                      @Param("nome") nome: String,
-                     @Param("unidadeDeMedida") unidadeDeMedida: String,
+                     @Param("unidadeDeMedida") unidadeDeMedida: UnidadeMedida,
                      @Param("precoUnitario") precoUnitario: BigDecimal,
                      @Param("categoria") categoria: String,
                      @Param("quantidade") quantidade: Int): Int
