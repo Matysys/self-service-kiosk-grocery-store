@@ -10,10 +10,13 @@ class CarrinhoDto (
     @Size(max = 30)
     val nomeProduto: String = "",
     @NotBlank
+    val idProduto: Long,
+    @NotBlank
     @Size(max = 30)
     val quantidadeProduto: Int
 ){
     fun toEntity(): Carrinho = Carrinho(
+        id = this.idProduto,
         nomeProduto = this.nomeProduto,
         quantidadeProduto = this.quantidadeProduto
     )

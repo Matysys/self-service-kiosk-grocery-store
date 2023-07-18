@@ -18,8 +18,8 @@ interface ProdutosRepository: JpaRepository<Produtos, Long> {
     @Query(value = "SELECT * FROM produtos WHERE nome LIKE CONCAT('%', :nome, '%')", nativeQuery = true)
     fun findAllByNome(@Param("nome") nome: String): List<Produtos>
 
-    @Query(value = "SELECT SUM(preco_unitario * :quantidade) as preco_total FROM produtos WHERE nome = :nome", nativeQuery = true)
-    fun calcularPreco(@Param("nome") nome: String, @Param("quantidade") quantidade: Int): BigDecimal
+    @Query(value = "SELECT SUM(preco_unitario * :quantidade) as preco_total FROM produtos WHERE id = :id AND nome = :nome", nativeQuery = true)
+    fun calcularPreco(@Param("id") id: Long, @Param("nome") nome: String, @Param("quantidade") quantidade: Int): BigDecimal
 
     @Transactional
     @Modifying
@@ -31,5 +31,8 @@ interface ProdutosRepository: JpaRepository<Produtos, Long> {
                      @Param("precoUnitario") precoUnitario: BigDecimal,
                      @Param("categoria") categoria: String,
                      @Param("quantidade") quantidade: Int): Int
+
+    @Query(value = "SELECT quantidade FROM produtos WHERE id = :id", nativeQuery = true)
+    fun verificarQntProdutos(@Param("id") id: Long): Int
 
 }

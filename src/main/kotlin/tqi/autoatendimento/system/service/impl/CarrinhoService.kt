@@ -10,13 +10,21 @@ import java.math.BigDecimal
 @Service
 class CarrinhoService(private val carrinhoRepository: CarrinhoRepository
 , private val produtosRepository: ProdutosRepository): ICarrinhoService {
-    override fun saveCarrinho(carrinho: Carrinho) {
-        carrinho.precoProduto = this.produtosRepository.calcularPreco(carrinho.nomeProduto, carrinho.quantidadeProduto)
-        this.carrinhoRepository.save(carrinho)
+    override fun saveCarrinho(carrinho: Carrinho): String {
+        carrinho.precoProduto = this.produtosRepository.calcularPreco(carrinho.id!!, carrinho.nomeProduto, carrinho.quantidadeProduto)
+        val quantidadeAtual: Int = this.produtosRepository.verificarQntProdutos(carrinho.id)
+
+        if(carrinho.quantidadeProduto <= quantidadeAtual){
+            this.carrinhoRepository.save(carrinho)
+            return "O carrinho foi atualizado com sucesso."
+        }else{
+            return "Não há estoque o suficiente para a quantidade solicitada."
+        }
+
     }
 
     override fun updateCarrinho(carrinho: Carrinho) {
-        carrinho.precoProduto = this.produtosRepository.calcularPreco(carrinho.nomeProduto, carrinho.quantidadeProduto)
+        carrinho.precoProduto = this.produtosRepository.calcularPreco(carrinho.id!!, carrinho.nomeProduto, carrinho.quantidadeProduto)
         this.carrinhoRepository.update(carrinho.nomeProduto, carrinho.quantidadeProduto, carrinho.precoProduto)
     }
 
