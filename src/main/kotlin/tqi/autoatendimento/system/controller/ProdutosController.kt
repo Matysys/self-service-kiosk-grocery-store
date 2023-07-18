@@ -29,25 +29,15 @@ class ProdutosController(private val produtosService: ProdutosService) {
         }
     }
 
-    @GetMapping("/{categoria}")
-    fun getProdutosByCategoria(@PathVariable @Valid categoria: String): ResponseEntity<Optional<List<Produtos>>> {
-        val categoria: List<Produtos> = this.produtosService.findAllByCategoria(categoria)
-        return ResponseEntity.status(HttpStatus.OK).body(Optional.of(categoria))
-    }
-
     @GetMapping
-    fun getAllProdutos(): ResponseEntity<Optional<List<Produtos>>> {
+    fun getAllProdutos(@RequestParam(required = false, defaultValue = "") categoria: String, @RequestParam(required = false, defaultValue = "") nome: String): ResponseEntity<Optional<List<Produtos>>> {
+        if(categoria.isNotEmpty()) return ResponseEntity.ok().body(Optional.of(this.produtosService.findAllByCategoria(categoria)))
+        if(nome.isNotEmpty()) return ResponseEntity.ok().body(Optional.of(this.produtosService.findAllProdutosByName(nome)))
         val produtos: List<Produtos> = this.produtosService.findAllProdutos()
         return ResponseEntity.status(HttpStatus.OK).body(Optional.of(produtos))
     }
 
-    @GetMapping("/busca/{nome}")
-    fun getProdutosByNome(@PathVariable @Valid nome: String): ResponseEntity<Optional<List<Produtos>>> {
-        val produtos: List<Produtos> = this.produtosService.findAllProdutosByName(nome)
-        return ResponseEntity.status(HttpStatus.OK).body(Optional.of(produtos))
-    }
-
-    @GetMapping("/busca")
+    @GetMapping("/s")
     fun getProdutosById(@RequestParam("id") @Valid id: Long): ResponseEntity<Optional<Produtos>>{
         return ResponseEntity.status(HttpStatus.OK).body(this.produtosService.findById(id))
 
