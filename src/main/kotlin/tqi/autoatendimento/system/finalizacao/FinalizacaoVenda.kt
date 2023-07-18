@@ -1,4 +1,4 @@
-package tqi.autoatendimento.system.entity
+package tqi.autoatendimento.system.finalizacao
 
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
