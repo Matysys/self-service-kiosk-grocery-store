@@ -36,7 +36,7 @@ class ProdutosService(private val produtosRepository: ProdutosRepository, privat
     }
 
     override fun editProdutos(produtos: Produtos): String {
-        val status: Int = this.produtosRepository.editProdutos(produtos.id!!, produtos.nome, produtos.unidadeDeMedida, produtos.precoUnitario, produtos.categoria, produtos.quantidade)
+        val status: Int = this.produtosRepository.editProdutos(produtos.id!!, produtos.nome, produtos.unidadeDeMedida.name, produtos.precoUnitario, produtos.categoria, produtos.quantidade)
         if(status == 1){
             return "O produto de ID: ${produtos.id} foi alterado com sucesso!"
         }else{

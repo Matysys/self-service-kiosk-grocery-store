@@ -28,7 +28,7 @@ interface ProdutosRepository: JpaRepository<Produtos, Long> {
             "preco_unitario = :precoUnitario, categoria = :categoria, quantidade = :quantidade WHERE id = :id", nativeQuery = true)
     fun editProdutos(@Param("id") id: Long,
                      @Param("nome") nome: String,
-                     @Param("unidadeDeMedida") unidadeDeMedida: UnidadeMedida,
+                     @Param("unidadeDeMedida") unidadeDeMedida: String,
                      @Param("precoUnitario") precoUnitario: BigDecimal,
                      @Param("categoria") categoria: String,
                      @Param("quantidade") quantidade: Int): Int
