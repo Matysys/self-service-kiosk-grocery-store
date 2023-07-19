@@ -1,17 +1,20 @@
 package tqi.autoatendimento.system.dto
 
+import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.Size
 import tqi.autoatendimento.system.entity.Carrinho
 
 class CarrinhoDto (
-    @NotBlank
+    @field:NotEmpty
     @Size(max = 30)
     val nomeProduto: String = "",
-    @NotBlank
+    @field:Min(1)
     val idProduto: Long,
-    @NotBlank
+    @field:NotEmpty
     @Size(max = 30)
+    @field:Min(1)
     val quantidadeProduto: Int
 ){
     fun toEntity(): Carrinho = Carrinho(
