@@ -25,12 +25,12 @@ interface ProdutosRepository: JpaRepository<Produtos, Long> {
     @Transactional
     @Modifying
     @Query(value = "UPDATE produtos SET nome = :nome, unidade_de_medida = :unidadeDeMedida, " +
-            "preco_unitario = :precoUnitario, categoria = :categoria, quantidade = :quantidade WHERE id = :id", nativeQuery = true)
+            "preco_unitario = :precoUnitario, categoria_id = :categoria, quantidade = :quantidade WHERE id = :id", nativeQuery = true)
     fun editProdutos(@Param("id") id: Long,
                      @Param("nome") nome: String,
                      @Param("unidadeDeMedida") unidadeDeMedida: String,
                      @Param("precoUnitario") precoUnitario: BigDecimal,
-                     @Param("categoria") categoria: String,
+                     @Param("categoria") categoria: Long,
                      @Param("quantidade") quantidade: Int): Int
 
     @Query(value = "SELECT quantidade FROM produtos WHERE id = :id", nativeQuery = true)

@@ -9,7 +9,6 @@ import tqi.autoatendimento.system.entity.Categoria
 @Repository
 interface CategoriaRepository: JpaRepository<Categoria, Long> {
 
-    @Query("SELECT * FROM categoria WHERE nome = :nome", nativeQuery = true)
-    fun existsByName(@Param("nome") nome: String): Int
+
 
 }

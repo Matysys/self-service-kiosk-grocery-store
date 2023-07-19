@@ -14,8 +14,8 @@ import java.util.*
 class ProdutosService(private val produtosRepository: ProdutosRepository, private val categoriaRepository: CategoriaRepository): IProdutosService {
 
     override fun save(produtos: Produtos): Produtos {
-        val exists: Int = this.categoriaRepository.existsByName(produtos.categoria)
-        if(exists > 0) return this.produtosRepository.save(produtos)
+        val exists: Boolean = this.categoriaRepository.existsById(produtos.categoria.id!!)
+        if(exists) return this.produtosRepository.save(produtos)
         else throw IllegalArgumentException("Categoria não existe.")
     }
 
@@ -36,7 +36,7 @@ class ProdutosService(private val produtosRepository: ProdutosRepository, privat
     }
 
     override fun editProdutos(produtos: Produtos): String {
-        val status: Int = this.produtosRepository.editProdutos(produtos.id!!, produtos.nome, produtos.unidadeDeMedida.name, produtos.precoUnitario, produtos.categoria, produtos.quantidade)
+        val status: Int = this.produtosRepository.editProdutos(produtos.id!!, produtos.nome, produtos.unidadeDeMedida.name, produtos.precoUnitario, produtos.categoria.id!!, produtos.quantidade)
         if(status == 1){
             return "O produto de ID: ${produtos.id} foi alterado com sucesso!"
         }else{
