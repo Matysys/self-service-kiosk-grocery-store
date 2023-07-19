@@ -17,7 +17,7 @@ import java.util.*
 @RestController
 @CrossOrigin(origins = ["*"], maxAge = 3600)
 @RequestMapping("/api/finalizacao")
-class FinalizacaoVenda(private val finalizacaoVendaService: FinalizacaoVendaService) {
+class FinalizacaoVendaController(private val finalizacaoVendaService: FinalizacaoVendaService) {
 
     @PostMapping()
     fun finalizarVenda(@RequestBody @Valid finalizacaoVendaDto: FinalizacaoVendaDto): ResponseEntity<FinalizacaoVendaResponse> {
