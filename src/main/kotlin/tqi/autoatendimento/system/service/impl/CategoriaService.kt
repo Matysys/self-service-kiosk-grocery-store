@@ -1,5 +1,6 @@
 package tqi.autoatendimento.system.service.impl
 
+import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.stereotype.Service
 import tqi.autoatendimento.system.entity.Categoria
 import tqi.autoatendimento.system.repository.CategoriaRepository

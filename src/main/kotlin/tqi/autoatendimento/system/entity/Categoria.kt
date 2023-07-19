@@ -8,6 +8,6 @@ data class Categoria(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-    @Column(nullable = false, length = 20) val nome: String = ""
+    @Column(nullable = false, length = 20) val nome: String = "",
 
 )

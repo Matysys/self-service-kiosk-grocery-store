@@ -17,7 +17,7 @@ data class Produtos(
     @Column(nullable = false, columnDefinition = "DECIMAL(10,2)") val precoUnitario: BigDecimal,
     //Não estava na imagem do desafio, mas eu acredito que é necessário atribuir uma categoria para o produto.
     @Column(nullable = false) val quantidade: Int,
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.REMOVE])
     @JoinColumn(name = "categoria_id", nullable = false)
     val categoria: Categoria = Categoria()
 )
