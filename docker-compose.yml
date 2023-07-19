@@ -9,7 +9,7 @@ services:
     restart: always
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_autoatendimento
-      - SPRING_DATASOURCE_USERNAME=jumarket
+      - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=jumarket123
     depends_on:
       - db
@@ -19,7 +19,6 @@ services:
     command: --bind-address=0.0.0.0
     restart: always
     environment:
-      - MYSQL_USER=jumarket
       - MYSQL_ROOT_PASSWORD=jumarket123
       - MYSQL_DATABASE=db_autoatendimento
     ports:
