@@ -4,7 +4,7 @@ import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import tqi.autoatendimento.system.Dto.CategoriaDto
+import tqi.autoatendimento.system.dto.CategoriaDto
 import tqi.autoatendimento.system.entity.Categoria
 import tqi.autoatendimento.system.service.impl.CategoriaService
 import java.util.*

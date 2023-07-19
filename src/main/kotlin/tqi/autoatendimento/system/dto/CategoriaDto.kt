@@ -1,4 +1,4 @@
-package tqi.autoatendimento.system.Dto
+package tqi.autoatendimento.system.dto
 
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size

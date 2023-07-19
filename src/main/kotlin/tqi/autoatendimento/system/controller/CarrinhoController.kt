@@ -4,7 +4,7 @@ import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import tqi.autoatendimento.system.Dto.CarrinhoDto
+import tqi.autoatendimento.system.dto.CarrinhoDto
 import tqi.autoatendimento.system.entity.Carrinho
 import tqi.autoatendimento.system.service.impl.CarrinhoService
 

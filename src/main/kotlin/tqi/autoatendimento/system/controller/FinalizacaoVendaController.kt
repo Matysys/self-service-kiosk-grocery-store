@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import tqi.autoatendimento.system.Dto.FinalizacaoVendaDto
+import tqi.autoatendimento.system.dto.FinalizacaoVendaDto
 import tqi.autoatendimento.system.finalizacao.FinalizacaoVendaResponse
 import tqi.autoatendimento.system.service.impl.FinalizacaoVendaService
 import java.math.BigDecimal
