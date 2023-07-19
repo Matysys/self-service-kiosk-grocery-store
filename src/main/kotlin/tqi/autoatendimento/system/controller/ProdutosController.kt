@@ -30,8 +30,8 @@ class ProdutosController(private val produtosService: ProdutosService) {
     }
 
     @GetMapping
-    fun getAllProdutos(@RequestParam(required = false, defaultValue = "") categoria: String, @RequestParam(required = false, defaultValue = "") nome: String): ResponseEntity<Optional<List<Produtos>>> {
-        if(categoria.isNotEmpty()) return ResponseEntity.ok().body(Optional.of(this.produtosService.findAllByCategoria(categoria)))
+    fun getAllProdutos(@RequestParam(required = false) categoriaId: Long?, @RequestParam(required = false, defaultValue = "") nome: String): ResponseEntity<Optional<List<Produtos>>> {
+        if(categoriaId != null && categoriaId > 0) return ResponseEntity.ok().body(Optional.of(this.produtosService.findAllByCategoria(categoriaId)))
         if(nome.isNotEmpty()) return ResponseEntity.ok().body(Optional.of(this.produtosService.findAllProdutosByName(nome)))
         val produtos: List<Produtos> = this.produtosService.findAllProdutos()
         return ResponseEntity.status(HttpStatus.OK).body(Optional.of(produtos))

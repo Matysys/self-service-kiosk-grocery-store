@@ -8,7 +8,7 @@ interface IProdutosService {
 
     fun save(produtos: Produtos): Produtos
 
-    fun findAllByCategoria(categoria: String): List<Produtos>
+    fun findAllByCategoria(categoriaId: Long): List<Produtos>
 
     fun findById(id: Long): Optional<Produtos>
 

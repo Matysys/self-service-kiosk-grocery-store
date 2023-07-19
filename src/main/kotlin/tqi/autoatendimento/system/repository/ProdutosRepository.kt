@@ -13,8 +13,8 @@ import java.math.BigDecimal
 @Repository
 interface ProdutosRepository: JpaRepository<Produtos, Long> {
 
-    @Query(value = "SELECT * FROM produtos WHERE categoria = :categoria", nativeQuery = true)
-    fun findAllByCategoria(@Param("categoria") categoria: String): List<Produtos>
+    @Query(value = "SELECT * FROM produtos WHERE categoria_id = :categoria", nativeQuery = true)
+    fun findAllByCategoria(@Param("categoria") categoria: Long): List<Produtos>
 
     @Query(value = "SELECT * FROM produtos WHERE nome LIKE CONCAT('%', :nome, '%')", nativeQuery = true)
     fun findAllByNome(@Param("nome") nome: String): List<Produtos>

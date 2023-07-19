@@ -19,8 +19,8 @@ class ProdutosService(private val produtosRepository: ProdutosRepository, privat
         else throw IllegalArgumentException("Categoria não existe.")
     }
 
-    override fun findAllByCategoria(categoria: String): List<Produtos> {
-        return this.produtosRepository.findAllByCategoria(categoria)
+    override fun findAllByCategoria(categoriaId: Long): List<Produtos> {
+        return this.produtosRepository.findAllByCategoria(categoriaId)
     }
 
     override fun findById(id: Long): Optional<Produtos> {
