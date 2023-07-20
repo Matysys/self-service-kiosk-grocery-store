@@ -4,6 +4,7 @@ import java.math.BigDecimal
 
 data class FinalizacaoVendaResponse(
     val formaPagamento: String,
-    val valorTotal: String, //Para poder mostrar o cifrão na resposta JSON.
+    val valorTotal: String,
+    val codVenda: String,
     val mensagem: String
 )

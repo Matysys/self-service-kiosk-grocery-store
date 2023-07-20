@@ -8,10 +8,7 @@ import tqi.autoatendimento.system.enum.FormaPagamento
 
 class FinalizacaoVendaDto (
     @field:NotNull
-    val formaPagamento: FormaPagamento,
-){
-    fun toEntity(): FinalizacaoVenda = FinalizacaoVenda(
-        formaPagamento = this.formaPagamento
-    )
+    val formaPagamento: FormaPagamento
+)
 
-}
+

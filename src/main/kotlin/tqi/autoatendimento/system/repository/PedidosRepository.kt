@@ -10,6 +10,7 @@ import tqi.autoatendimento.system.entity.Pedidos
 @Repository
 interface PedidosRepository: JpaRepository<Pedidos, Long> {
 
-
+    @Query(value = "SELECT * FROM pedidos WHERE cod_venda = :cod", nativeQuery = true)
+    fun findByCodVenda(@Param("cod") cod: String): List<Pedidos>
 
 }
