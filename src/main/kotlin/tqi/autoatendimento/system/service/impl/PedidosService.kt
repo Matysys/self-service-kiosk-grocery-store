@@ -36,7 +36,7 @@ class PedidosService(private val carrinhoService: CarrinhoService, private val p
             this.pedidosRepository.save(pedido)
         }
 
-        this.carrinhoService.deleteAll()
+        this.carrinhoService.truncateAll()
 
 
         return arrayOf(valorTotal, codVenda.toString())

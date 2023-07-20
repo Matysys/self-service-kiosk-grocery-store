@@ -15,8 +15,13 @@ class CarrinhoService(private val carrinhoRepository: CarrinhoRepository
         val quantidadeAtual: Int = this.produtosRepository.verificarQntProdutos(carrinho.idProduto)
 
         if(carrinho.quantidadeProduto <= quantidadeAtual){
-            this.carrinhoRepository.save(carrinho)
-            return "O carrinho foi atualizado com sucesso."
+            val exist: Any = this.carrinhoRepository.existsCarrinho(carrinho.idProduto)
+            if(exist != null) {
+                return "Produto já está no carrinho."
+            }else{
+                this.carrinhoRepository.save(carrinho)
+                return "O carrinho foi atualizado com sucesso."
+            }
         }else{
             return "Não há estoque o suficiente para a quantidade solicitada."
         }
@@ -40,6 +45,10 @@ class CarrinhoService(private val carrinhoRepository: CarrinhoRepository
 
     override fun deleteAll(){
         this.carrinhoRepository.deleteAll()
+    }
+
+    override fun truncateAll(){
+        this.carrinhoRepository.truncateAll()
     }
 
 }

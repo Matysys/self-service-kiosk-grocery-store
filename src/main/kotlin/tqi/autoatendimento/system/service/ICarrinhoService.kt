@@ -13,4 +13,6 @@ interface ICarrinhoService {
     fun deleteById(id: Long)
 
     fun deleteAll()
+
+    fun truncateAll()
 }

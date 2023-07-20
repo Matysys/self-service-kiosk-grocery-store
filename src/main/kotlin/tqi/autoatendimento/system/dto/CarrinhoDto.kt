@@ -6,7 +6,8 @@ import tqi.autoatendimento.system.entity.Categoria
 
 class CarrinhoDto (
     @field:NotEmpty
-    @Size(max = 30)
+    @field:Size(max = 30)
+    @field:Pattern(regexp = "[\\p{L}]+")
     val nomeProduto: String = "",
     @field:Min(1)
     val idProduto: Long,
