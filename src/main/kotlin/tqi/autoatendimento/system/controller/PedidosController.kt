@@ -13,6 +13,7 @@ import tqi.autoatendimento.system.dto.FinalizacaoVendaDto
 import tqi.autoatendimento.system.entity.Pedidos
 import tqi.autoatendimento.system.finalizacao.FinalizacaoVendaResponse
 import tqi.autoatendimento.system.service.impl.PedidosService
+import java.math.BigDecimal
 import java.text.NumberFormat
 import java.util.*
 
@@ -35,8 +36,20 @@ class PedidosController(private val pedidoService: PedidosService) {
     }
 
     @GetMapping()
-    fun findByCodVenda(@RequestParam(required = false, defaultValue = "") cod: String): ResponseEntity<List<Pedidos>>{
-        val venda: List<Pedidos> = this.pedidoService.findByCodVenda(cod)
-        return ResponseEntity.ok().body(venda)
+    fun findByCodVenda(@RequestParam(required = false, defaultValue = "") cod: String,
+                       @RequestParam(required = false, defaultValue = "false") total: Boolean): ResponseEntity<out Any> {
+        if(cod.isNotEmpty()){
+            if(!total) {
+                val venda: List<Pedidos> = this.pedidoService.findByCodVenda(cod)
+                return ResponseEntity.ok().body(venda)
+            }else{
+                val numberFormat = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
+                val venda: BigDecimal = this.pedidoService.findTotalByCodVenda(cod)
+                return ResponseEntity.ok().body(numberFormat.format(venda))
+            }
+        }else{
+            val venda: List<Pedidos> = this.pedidoService.findAll()
+            return ResponseEntity.ok().body(venda)
+        }
     }
 }

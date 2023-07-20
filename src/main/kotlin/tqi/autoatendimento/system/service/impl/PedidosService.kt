@@ -56,5 +56,13 @@ class PedidosService(private val carrinhoService: CarrinhoService, private val p
         return this.pedidosRepository.findByCodVenda(cod)
     }
 
+    override fun findAll(): List<Pedidos>{
+        return this.pedidosRepository.findAll()
+    }
+
+    override fun findTotalByCodVenda(cod: String): BigDecimal {
+        return this.pedidosRepository.findTotalByCodVenda(cod)
+    }
+
 
 }
