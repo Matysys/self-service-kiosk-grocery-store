@@ -18,12 +18,12 @@ class ProdutosController(private val produtosService: ProdutosService) {
 
     @PostMapping
     fun saveProduto(@RequestBody @Valid produtosDto: ProdutosDto): ResponseEntity<String>{
-        try {
+        return try {
             val produto: Produtos = this.produtosService.save(produtosDto.toEntity())
             val response: String = "O produto '${produto.nome}' foi adicionado com sucesso!"
-            return ResponseEntity.status(HttpStatus.OK).body(response)
+            ResponseEntity.status(HttpStatus.OK).body(response)
         }catch(e: IllegalArgumentException){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.message)
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.message)
         }
     }
 

@@ -17,7 +17,7 @@ data class ProdutosAlterarDto(
     val nome: String = "",
     @field:NotNull
     val unidadeDeMedida: UnidadeMedida,
-    @field:Min(1)
+    @field:Min(0)
     val precoUnitario: BigDecimal,
     @Size(max = 30)
     @field:Min(1)
