@@ -21,9 +21,8 @@ class FinalizacaoVendaController(private val finalizacaoVendaService: Finalizaca
 
     @PostMapping()
     fun finalizarVenda(@RequestBody @Valid finalizacaoVendaDto: FinalizacaoVendaDto): ResponseEntity<FinalizacaoVendaResponse> {
-        val valorTotal: BigDecimal = this.finalizacaoVendaService.finalizarVendaPreco()
-        val formaPagamento: String =
-            this.finalizacaoVendaService.finalizarVendaPagamento(finalizacaoVendaDto.formaPagamento)
+        val valorTotal: BigDecimal = this.finalizacaoVendaService.finalizarVendaPreco(finalizacaoVendaDto.formaPagamento)
+        val formaPagamento: String = this.finalizacaoVendaService.finalizarVendaPagamento(finalizacaoVendaDto.formaPagamento)
         val mensagem: String = "Obrigado(a) por comprar na JuMarket! Volte sempre!!!"
 
         val numberFormat = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))

@@ -12,6 +12,5 @@ data class Carrinho(
     @Column(nullable = false) val idProduto: Long,
     @Column(nullable = false, length = 20) val nomeProduto: String,
     @Column(nullable = false) val quantidadeProduto: Int,
-    @Column(nullable = false) var precoProduto: BigDecimal = BigDecimal.ZERO
-
+    @Column(nullable = false) var precoProduto: BigDecimal = BigDecimal.ZERO,
 )

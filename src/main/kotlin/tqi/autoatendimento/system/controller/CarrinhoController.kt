@@ -17,8 +17,8 @@ class CarrinhoController(private val carrinhoService: CarrinhoService) {
     fun saveCarrinho(@RequestBody @Valid carrinhoDto: CarrinhoDto): ResponseEntity<String>{
         val response: String = this.carrinhoService.saveCarrinho(carrinhoDto.toEntity())
 
-        if(response == "O carrinho foi atualizado com sucesso.") return ResponseEntity.status(HttpStatus.OK).body(response)
-        else return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response)
+        return if(response == "O carrinho foi atualizado com sucesso.") ResponseEntity.status(HttpStatus.OK).body(response)
+        else ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response)
     }
 
     @GetMapping
