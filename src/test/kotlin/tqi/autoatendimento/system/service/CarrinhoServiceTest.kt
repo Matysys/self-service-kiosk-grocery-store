@@ -15,7 +15,7 @@ import org.assertj.core.api.Assertions.*
 class CarrinhoServiceTest {
     @MockK lateinit var carrinhoRepository: CarrinhoRepository
     @InjectMockKs lateinit var carrinhoService: CarrinhoService
-
+    /*
     @Test
     fun `should save categoria`(){
         //given
@@ -23,5 +23,5 @@ class CarrinhoServiceTest {
         //when
 
         //then
-    }
+    }*/
 }
