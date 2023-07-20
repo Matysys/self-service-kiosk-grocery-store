@@ -34,7 +34,7 @@ dependencies {
 	testImplementation 'io.mockk:mockk:1.13.5'
 }
 
-tasks.withType(KotlinCompile) {
+tasks.withType(KotlinCompile).configureEach {
 	kotlinOptions {
 		freeCompilerArgs += '-Xjsr305=strict'
 		jvmTarget = '17'
