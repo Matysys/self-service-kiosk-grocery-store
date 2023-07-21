@@ -174,23 +174,6 @@ class CarrinhoServiceTest {
         precoProduto = precoProduto
     )
 
-    //Método privado para criar produtos que seram usados para o teste
-    private fun buildProdutos(
-        id: Long = 1L,
-        nome: String = "X-salada",
-        precoUnitario: BigDecimal = BigDecimal(6.50),
-        quantidade: Int = 20,
-        unidadeMedida: UnidadeMedida = UnidadeMedida.UNIDADE,
-        categoria: Categoria = buildCategoria()
-    ) = Produtos(
-        id = id,
-        nome = nome,
-        precoUnitario = precoUnitario,
-        quantidade = quantidade,
-        unidadeDeMedida = unidadeMedida,
-        categoria = categoria
-    )
-
     //Método privado para criar categorias que seram usados para o teste
     private fun buildCategoria(
         id: Long = 1L,
