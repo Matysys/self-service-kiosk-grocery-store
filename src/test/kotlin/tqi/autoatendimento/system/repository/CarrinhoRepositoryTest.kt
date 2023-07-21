@@ -1,6 +1,7 @@
 package tqi.autoatendimento.system.repository
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -42,6 +43,11 @@ class CarrinhoRepositoryTest {
             quantidadeProduto = produtos2.quantidade,
             precoProduto = produtos2.precoUnitario
         ))
+    }
+
+    @AfterEach
+    fun teardown(){
+        carrinhoRepository.deleteAll()
     }
 
     //SELECT, retorna todos os produtos do carrinho

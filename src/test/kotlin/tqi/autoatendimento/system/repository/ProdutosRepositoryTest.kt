@@ -1,6 +1,7 @@
 package tqi.autoatendimento.system.repository
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -22,12 +23,19 @@ class ProdutosRepositoryTest {
 
     private lateinit var produtos: Produtos
     private lateinit var categoria: Categoria
+    @Autowired
+    private lateinit var categoriaRepository: CategoriaRepository
 
     @BeforeEach fun setup(){
         categoria = testEntityManager.persist(buildCategoria())
         produtos = testEntityManager.persist(buildProdutos(categoria = categoria))
         testEntityManager.persist(buildProdutos(nome = "X-bacon", categoria = categoria))
         testEntityManager.persist(buildProdutos(nome = "Hamburguer", categoria = categoria))
+    }
+
+    @AfterEach fun teardown(){
+        produtosRepository.deleteAll()
+        categoriaRepository.deleteAll()
     }
 
     //SELECT, encontra todos os produtos pela categoria
