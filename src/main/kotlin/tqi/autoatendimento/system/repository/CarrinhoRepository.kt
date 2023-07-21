@@ -28,6 +28,6 @@ interface CarrinhoRepository: JpaRepository<Carrinho, Long> {
 
     @Nullable //Para corrigir o erro de retornar null
     @Query("SELECT id_produto FROM carrinho WHERE id_produto = :produtoId", nativeQuery = true)
-    fun existsCarrinho(@Param("produtoId") produtoId: Long): Any
+    fun existsCarrinho(@Param("produtoId") produtoId: Long): Long?
 
 }

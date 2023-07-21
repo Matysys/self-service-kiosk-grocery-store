@@ -10,26 +10,28 @@ import java.math.BigDecimal
 @Service
 class CarrinhoService(private val carrinhoRepository: CarrinhoRepository
 , private val produtosRepository: ProdutosRepository): ICarrinhoService {
+
+    //ssss
     override fun saveCarrinho(carrinho: Carrinho): String {
         carrinho.precoProduto = this.produtosRepository.calcularPreco(carrinho.idProduto, carrinho.nomeProduto, carrinho.quantidadeProduto)
         val quantidadeAtual: Int = this.produtosRepository.verificarQntProdutos(carrinho.idProduto)
 
-        if(carrinho.quantidadeProduto <= quantidadeAtual){
-            val exist: Any = this.carrinhoRepository.existsCarrinho(carrinho.idProduto)
-            if(exist != null) {
+        if (carrinho.quantidadeProduto <= quantidadeAtual) {
+            val exist: Long? = this.carrinhoRepository.existsCarrinho(carrinho.idProduto)
+            if (exist != null) {
                 return "Produto já está no carrinho."
-            }else{
+            } else {
                 this.carrinhoRepository.save(carrinho)
                 return "O carrinho foi atualizado com sucesso."
             }
-        }else{
+        } else {
             return "Não há estoque o suficiente para a quantidade solicitada."
         }
 
     }
 
     override fun updateCarrinho(carrinho: Carrinho) {
-        carrinho.precoProduto = this.produtosRepository.calcularPreco(carrinho.idProduto!!, carrinho.nomeProduto, carrinho.quantidadeProduto)
+        carrinho.precoProduto = this.produtosRepository.calcularPreco(carrinho.idProduto, carrinho.nomeProduto, carrinho.quantidadeProduto)
         this.carrinhoRepository.update(carrinho.nomeProduto, carrinho.quantidadeProduto, carrinho.precoProduto)
     }
 
