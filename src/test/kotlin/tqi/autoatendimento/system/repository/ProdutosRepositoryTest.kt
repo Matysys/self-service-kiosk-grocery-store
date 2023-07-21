@@ -20,11 +20,10 @@ import java.math.BigDecimal
 class ProdutosRepositoryTest {
     @Autowired lateinit var produtosRepository: ProdutosRepository
     @Autowired lateinit var testEntityManager: TestEntityManager
+    @Autowired lateinit var categoriaRepository: CategoriaRepository
 
     private lateinit var produtos: Produtos
     private lateinit var categoria: Categoria
-    @Autowired
-    private lateinit var categoriaRepository: CategoriaRepository
 
     @BeforeEach fun setup(){
         categoria = testEntityManager.persist(buildCategoria())
@@ -55,15 +54,16 @@ class ProdutosRepositoryTest {
     @Test
     fun `should find all produtos by nome containing the given value`() {
         //given
-        val nome = "X-"
+        testEntityManager.persist(buildProdutos(nome = "Batata", categoria = categoria))
+        testEntityManager.persist(buildProdutos(nome = "Batatinha", categoria = categoria))
 
         //when
-        val produtosByNome: List<Produtos> = produtosRepository.findAllByNome(nome)
+        val produtosByNome: List<Produtos> = produtosRepository.findAllByNome("Bata")
 
         //then
         assertThat(produtosByNome).isNotEmpty
         assertThat(produtosByNome).hasSize(2)
-        assertThat(produtosByNome.map { it.nome }).containsExactlyInAnyOrder("X-salada", "X-bacon")
+        assertThat(produtosByNome.map { it.nome }).containsExactlyInAnyOrder("Batata", "Batatinha")
     }
 
     //SELECT, calcula o preço total de acordo com o preço do produto e quantidade
@@ -84,11 +84,10 @@ class ProdutosRepositoryTest {
         val novoNome = "X-tudo"
         val novaUnidadeMedida = "UNIDADE"
         val novoPrecoUnitario = BigDecimal("7.50")
-        val novaCategoria: Categoria = testEntityManager.persist(buildCategoria(nome = "Lanches2"))
         val novaQuantidade = 5
 
         //when
-        val linhas: Int = produtosRepository.editProdutos(produtos.id!!, novoNome, novaUnidadeMedida, novoPrecoUnitario, novaCategoria.id!!, novaQuantidade)
+        val linhas: Int = produtosRepository.editProdutos(produtos.id!!, novoNome, novaUnidadeMedida, novoPrecoUnitario, categoria.id!!, novaQuantidade)
 
         //then
         assertThat(linhas).isEqualTo(1)
@@ -99,7 +98,7 @@ class ProdutosRepositoryTest {
         assertThat(produtoAtualizado.nome).isEqualTo(novoNome)
         assertThat(produtoAtualizado.unidadeDeMedida.toString()).isEqualTo(novaUnidadeMedida)
         assertThat(produtoAtualizado.precoUnitario).isEqualTo(novoPrecoUnitario)
-        assertThat(produtoAtualizado.categoria.id).isEqualTo(novaCategoria.id)
+        assertThat(produtoAtualizado.categoria.id).isEqualTo(categoria.id)
         assertThat(produtoAtualizado.quantidade).isEqualTo(novaQuantidade)
     }
 
@@ -122,16 +121,15 @@ class ProdutosRepositoryTest {
     fun `should update the quantidade of produtos with the given id`() {
         //given
         val quantidadeInicial = produtos.quantidade
-        val produtoId: Long = 1
         val quantidadeRemovida = 2
 
         //when
-        produtosRepository.removerEstoqueProduto(produtoId, quantidadeRemovida)
+        produtosRepository.removerEstoqueProduto(produtos.id!!, quantidadeRemovida)
         testEntityManager.flush()
         testEntityManager.clear()
 
         //then
-        val produtoAtualizado: Produtos = testEntityManager.find(Produtos::class.java, produtoId)
+        val produtoAtualizado: Produtos = testEntityManager.find(Produtos::class.java, produtos.id)
         assertThat(produtoAtualizado).isNotNull
         assertThat(produtoAtualizado.quantidade).isEqualTo(quantidadeInicial - quantidadeRemovida)
     }
