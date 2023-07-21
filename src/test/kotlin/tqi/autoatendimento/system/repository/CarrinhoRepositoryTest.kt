@@ -20,6 +20,7 @@ import java.math.BigDecimal
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class CarrinhoRepositoryTest {
     @Autowired lateinit var carrinhoRepository: CarrinhoRepository
+    @Autowired lateinit var produtosRepository: ProdutosRepository
     @Autowired lateinit var testEntityManager: TestEntityManager
 
     private lateinit var produtos: Produtos
@@ -48,6 +49,7 @@ class CarrinhoRepositoryTest {
     @AfterEach
     fun teardown(){
         carrinhoRepository.deleteAll()
+        produtosRepository.deleteAll()
     }
 
     //SELECT, retorna todos os produtos do carrinho
