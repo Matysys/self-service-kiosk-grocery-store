@@ -10,7 +10,6 @@ data class ProdutosAlterarDto(
     val id: Long,
     @field:NotEmpty
     @field:Size(max = 30)
-    @field:Pattern(regexp = "[\\p{L}]+")
     val nome: String = "",
     @field:NotNull
     val unidadeDeMedida: UnidadeMedida,

@@ -9,7 +9,6 @@ import java.math.BigDecimal
 data class ProdutosDto(
     @field:NotEmpty
     @field:Size(max = 30)
-    @field:Pattern(regexp = "[\\p{L}]+")
     val nome: String = "",
     @field:NotNull
     val unidadeDeMedida: UnidadeMedida,
