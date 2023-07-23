@@ -20,7 +20,6 @@ import tqi.autoatendimento.system.dto.CarrinhoDto
 import tqi.autoatendimento.system.dto.CategoriaDto
 import tqi.autoatendimento.system.dto.ProdutosDto
 import tqi.autoatendimento.system.entity.Carrinho
-import tqi.autoatendimento.system.entity.Categoria
 import tqi.autoatendimento.system.entity.Produtos
 import tqi.autoatendimento.system.enum.UnidadeMedida
 import tqi.autoatendimento.system.repository.CarrinhoRepository
@@ -73,7 +72,7 @@ class CarrinhoControllerTest {
         val message: String = "O carrinho foi atualizado com sucesso."
 
         //when
-        val result = mockMvc.perform(
+        mockMvc.perform(
             MockMvcRequestBuilders.post(URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(carrinhoDto)))
@@ -94,7 +93,7 @@ class CarrinhoControllerTest {
         val message: String = "Produto já está no carrinho."
 
         //when
-        val result = mockMvc.perform(
+        mockMvc.perform(
             MockMvcRequestBuilders.post(URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(carrinhoDto)))
@@ -114,7 +113,7 @@ class CarrinhoControllerTest {
         val message: String = "Não há estoque o suficiente para a quantidade solicitada."
 
         //when
-        val result = mockMvc.perform(
+        mockMvc.perform(
             MockMvcRequestBuilders.post(URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(carrinhoDto)))
@@ -172,7 +171,7 @@ class CarrinhoControllerTest {
         val carrinho: Carrinho = carrinhoRepository.save(buildCarrinhoDto().toEntity())
 
         //when/then
-        val result = mockMvc.perform(MockMvcRequestBuilders.delete("$URL/${carrinho.id}")
+        mockMvc.perform(MockMvcRequestBuilders.delete("$URL/${carrinho.id}")
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(MockMvcResultMatchers.status().isOk)
             .andDo(MockMvcResultHandlers.print())
@@ -187,7 +186,7 @@ class CarrinhoControllerTest {
         carrinhoRepository.save(buildCarrinhoDto().toEntity())
 
         //when/then
-        val result = mockMvc.perform(MockMvcRequestBuilders.delete(URL)
+        mockMvc.perform(MockMvcRequestBuilders.delete(URL)
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(MockMvcResultMatchers.status().isOk)
             .andDo(MockMvcResultHandlers.print())

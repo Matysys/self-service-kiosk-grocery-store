@@ -9,12 +9,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager
 import org.springframework.test.context.ActiveProfiles
-import tqi.autoatendimento.system.entity.Carrinho
-import tqi.autoatendimento.system.entity.Categoria
 import tqi.autoatendimento.system.entity.Pedidos
-import tqi.autoatendimento.system.entity.Produtos
 import tqi.autoatendimento.system.enum.FormaPagamento
-import tqi.autoatendimento.system.enum.UnidadeMedida
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.util.*

@@ -13,8 +13,6 @@ import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import tqi.autoatendimento.system.entity.Carrinho
 import tqi.autoatendimento.system.entity.Categoria
-import tqi.autoatendimento.system.entity.Produtos
-import tqi.autoatendimento.system.enum.UnidadeMedida
 import tqi.autoatendimento.system.repository.ProdutosRepository
 import java.math.BigDecimal
 

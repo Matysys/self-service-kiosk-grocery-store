@@ -1,8 +1,6 @@
 package tqi.autoatendimento.system.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import io.mockk.every
-import io.mockk.verify
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
@@ -26,8 +24,6 @@ import tqi.autoatendimento.system.entity.Produtos
 import tqi.autoatendimento.system.enum.UnidadeMedida
 import tqi.autoatendimento.system.repository.CategoriaRepository
 import tqi.autoatendimento.system.repository.ProdutosRepository
-import tqi.autoatendimento.system.service.impl.ProdutosService
-import java.lang.IllegalArgumentException
 import java.math.BigDecimal
 
 @SpringBootTest

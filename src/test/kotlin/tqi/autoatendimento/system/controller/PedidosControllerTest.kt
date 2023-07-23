@@ -150,7 +150,6 @@ class PedidosControllerTest {
     @Test
     fun `should return all pedidos`() {
         //given
-        val codVenda: String = Global.codVenda
         pedidosRepository.save(buildPedido())
         pedidosRepository.save(buildPedido( "Batata", 2, BigDecimal(8.5), 2))
         pedidosRepository.save(buildPedido( "Batatinha", 3, BigDecimal(9.5), 3,

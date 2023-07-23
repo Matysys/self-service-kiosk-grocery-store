@@ -18,7 +18,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import tqi.autoatendimento.system.dto.CategoriaDto
 import tqi.autoatendimento.system.entity.Categoria
 import tqi.autoatendimento.system.repository.CategoriaRepository
-import java.util.Objects
 
 @SpringBootTest
 @ActiveProfiles("test")
