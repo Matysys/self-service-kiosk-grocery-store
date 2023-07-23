@@ -15,7 +15,6 @@ data class ProdutosDto(
     val unidadeDeMedida: UnidadeMedida,
     @field:Min(0)
     val precoUnitario: BigDecimal,
-    @Size(max = 30)
     @field:Min(1)
     val categoriaId: Long,
     @field:Min(1)
