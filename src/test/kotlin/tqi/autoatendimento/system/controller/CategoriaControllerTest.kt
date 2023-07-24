@@ -24,18 +24,23 @@ import tqi.autoatendimento.system.repository.CategoriaRepository
 @AutoConfigureMockMvc
 @ContextConfiguration
 class CategoriaControllerTest {
+
+    //Anotação para injetar a dependências
     @Autowired private lateinit var categoriaRepository: CategoriaRepository
     @Autowired private lateinit var mockMvc: MockMvc
     @Autowired private lateinit var objectMapper: ObjectMapper
 
+    //Endpoint principal da categoria
     companion object{
         const val URL: String = "/api/categoria"
     }
 
+    //Deleta tudo antes de cada teste
     @BeforeEach fun setup(){
         categoriaRepository.deleteAll()
     }
 
+    //Deleta tudo após cada teste
     @AfterEach fun tearDown(){
         categoriaRepository.deleteAll()
     }

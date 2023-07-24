@@ -6,7 +6,10 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import java.sql.SQLIntegrityConstraintViolationException
-
+/*
+Controle de uma exceção em particular que impede que uma categoria seja deletada se existir algum produto
+de acordo com a restrição de chave estrangeira no banco de dados
+ */
 @RestControllerAdvice
 class RestExceptionHandler {
 
@@ -15,10 +18,4 @@ class RestExceptionHandler {
         val exception: String = "Não é possível apagar a categoria da qual ainda há produtos."
         return ResponseEntity.status(HttpStatus.CONFLICT).body(exception)
     }
-    /*
-    @ExceptionHandler(UnexpectedTypeException::class)
-    fun handlerValidException(ex: UnexpectedTypeException): ResponseEntity<String>{
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Informações inválidas")
-    }*/
-
 }

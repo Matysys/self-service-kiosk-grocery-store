@@ -2,13 +2,13 @@ package tqi.autoatendimento.system.entity
 
 import jakarta.persistence.*
 import tqi.autoatendimento.system.enum.FormaPagamento
-import tqi.autoatendimento.system.enum.UnidadeMedida
 import java.math.BigDecimal
-import java.util.UUID
 
+//Tabela dos pedidos que será criada no banco de dados
 @Entity
 @Table(name = "pedidos")
 data class Pedidos(
+    //ID será gerado automaticamente
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
@@ -19,5 +19,4 @@ data class Pedidos(
     @Enumerated(EnumType.STRING)
     @Column(nullable = false) val formaPagamento: FormaPagamento,
     @Column(nullable = false) val codVenda: String
-
 )

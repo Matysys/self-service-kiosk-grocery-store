@@ -14,25 +14,31 @@ import java.util.*
 @RequestMapping("/api/categoria")
 class CategoriaController(private val categoriaService: CategoriaService) {
 
+    //Salva a categoria
     @PostMapping
     fun saveCategoria(@RequestBody @Valid categoriaDto: CategoriaDto): ResponseEntity<String>{
         val categoria: Categoria = this.categoriaService.save(categoriaDto.toEntity())
+
+        //Resposta que virá na requisição
         val response: String = "A categoria '${categoria.nome}' foi adicionada com sucesso!"
         return ResponseEntity.status(HttpStatus.OK).body(response)
     }
 
+    //Retorna uma categoria pelo ID
     @GetMapping("/{id}")
     fun getCategoriaById(@PathVariable id: Long): ResponseEntity<Optional<Categoria>> {
         val categoria: Optional<Categoria> = Optional.of(this.categoriaService.findById(id))
         return ResponseEntity.status(HttpStatus.OK).body(categoria)
     }
 
+    //Retorna todas as categorias
     @GetMapping
     fun getAllCategoria(): ResponseEntity<Optional<List<Categoria>>> {
         val categorias: List<Categoria> = this.categoriaService.findAllCategoria()
         return ResponseEntity.status(HttpStatus.OK).body(Optional.of(categorias))
     }
 
+    //Deleta uma categoria pelo ID
     @DeleteMapping("/{id}")
     fun deleteCategoriaById(@PathVariable id: Long): ResponseEntity<String>{
         this.categoriaService.deleteById(id)
@@ -40,13 +46,11 @@ class CategoriaController(private val categoriaService: CategoriaService) {
         return ResponseEntity.status(HttpStatus.OK).body(response)
     }
 
+    //Deleta todas as categorias
     @DeleteMapping
     fun deleteAllCategoria(): ResponseEntity<String>{
         this.categoriaService.deleteAll()
         val response = "Todas as categorias foram deletadas com sucesso"
         return ResponseEntity.status(HttpStatus.OK).body(response)
     }
-
-
-
 }

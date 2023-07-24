@@ -16,6 +16,7 @@ import java.util.*
 @RequestMapping("/api/produtos")
 class ProdutosController(private val produtosService: ProdutosService) {
 
+    //Salva um produto novo
     @PostMapping
     fun saveProduto(@RequestBody @Valid produtosDto: ProdutosDto): ResponseEntity<String>{
         return try {
@@ -27,20 +28,29 @@ class ProdutosController(private val produtosService: ProdutosService) {
         }
     }
 
+    //Retorna todos os produtos por nome, categoria ou sem condições
     @GetMapping
-    fun getAllProdutos(@RequestParam(required = false) categoriaId: Long?, @RequestParam(required = false, defaultValue = "") nome: String): ResponseEntity<Optional<List<Produtos>>> {
+    fun getAllProdutos(@RequestParam(required = false) categoriaId: Long?,
+                       @RequestParam(required = false, defaultValue = "") nome: String): ResponseEntity<Optional<List<Produtos>>> {
+        //Se o parâmetro da categoria existir
         if(categoriaId != null && categoriaId > 0) return ResponseEntity.ok().body(Optional.of(this.produtosService.findAllByCategoria(categoriaId)))
+
+        //Se o parâmetro do nome não estiver vazio
         if(nome.isNotEmpty()) return ResponseEntity.ok().body(Optional.of(this.produtosService.findAllProdutosByName(nome)))
+
+        //Se nenhuma condição for mencionada
         val produtos: List<Produtos> = this.produtosService.findAllProdutos()
         return ResponseEntity.status(HttpStatus.OK).body(Optional.of(produtos))
     }
 
+    //Retorna um produto pelo ID
     @GetMapping("/s")
     fun getProdutosById(@RequestParam("id") @Valid id: Long): ResponseEntity<Optional<Produtos>>{
         return ResponseEntity.status(HttpStatus.OK).body(this.produtosService.findById(id))
 
     }
 
+    //Altera um produto
     @PutMapping("/alterar")
     fun editProduto(@RequestBody @Valid produtosAlterarDto: ProdutosAlterarDto): ResponseEntity<String> {
         var response: String = produtosService.editProdutos(produtosAlterarDto.toEntity())
@@ -48,6 +58,7 @@ class ProdutosController(private val produtosService: ProdutosService) {
         else return ResponseEntity.status(HttpStatus.OK).body(response)
     }
 
+    //Deleta um produto pelo ID
     @DeleteMapping("/{id}")
     fun deleteProdutoById(@PathVariable id: Long): ResponseEntity<String>{
         this.produtosService.delete(id)

@@ -44,6 +44,7 @@ para que os IDs do banco de dados sofram um TRUNCATE e não gerem interferência
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 class PedidosControllerTest {
 
+    //Anotação para injetar a dependências
     @Autowired private lateinit var pedidosRepository: PedidosRepository
     @Autowired private lateinit var carrinhoRepository: CarrinhoRepository
     @Autowired private lateinit var produtosRepository: ProdutosRepository
@@ -51,10 +52,12 @@ class PedidosControllerTest {
     @Autowired private lateinit var mockMvc: MockMvc
     @Autowired private lateinit var objectMapper: ObjectMapper
 
+    //Endpoint principal dos pedidos
     companion object{
         const val URL: String = "/api/pedidos"
     }
 
+    //Deleta tudo antes de cada teste
     @BeforeEach
     fun setup(){
         produtosRepository.deleteAll()
@@ -63,6 +66,7 @@ class PedidosControllerTest {
         pedidosRepository.deleteAll()
     }
 
+    //Deleta tudo após cada teste
     @AfterEach
     fun tearDown(){
         produtosRepository.deleteAll()

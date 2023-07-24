@@ -1,7 +1,6 @@
 package tqi.autoatendimento.system.finalizacao
 
-import java.math.BigDecimal
-
+//Classe usada para retornar as informações para o cliente após a compra dos produtos.
 data class FinalizacaoVendaResponse(
     val formaPagamento: String,
     val valorTotal: String,

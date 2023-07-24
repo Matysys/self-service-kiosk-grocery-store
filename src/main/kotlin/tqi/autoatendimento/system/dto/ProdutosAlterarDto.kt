@@ -6,6 +6,7 @@ import tqi.autoatendimento.system.entity.Produtos
 import tqi.autoatendimento.system.enum.UnidadeMedida
 import java.math.BigDecimal
 
+//Informações que serão passadas via JSON para alterar um produto. Validações via Hibernate.
 data class ProdutosAlterarDto(
     val id: Long,
     @field:NotEmpty

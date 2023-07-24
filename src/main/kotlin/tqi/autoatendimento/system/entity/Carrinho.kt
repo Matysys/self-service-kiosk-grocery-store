@@ -3,9 +3,11 @@ package tqi.autoatendimento.system.entity
 import jakarta.persistence.*
 import java.math.BigDecimal
 
+//Tabela do carrinho que será criada no banco de dados
 @Entity
 @Table(name = "carrinho")
 data class Carrinho(
+    //ID que é gerado automaticamente
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,

@@ -6,6 +6,11 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class Swagger3Config {
+
+    /*
+    Swagger para a documentação
+    localhost:8080/swagger-ui.html
+     */
     @Bean
     fun publicApi(): GroupedOpenApi?{
         return GroupedOpenApi.builder()
@@ -13,4 +18,5 @@ class Swagger3Config {
             .pathsToMatch("/api/categoria/**", "/api/produtos/**", "/api/carrinho/**", "/api/finalizacao/**")
             .build()
     }
+
 }

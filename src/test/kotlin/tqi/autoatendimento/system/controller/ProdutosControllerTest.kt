@@ -36,21 +36,26 @@ para que os IDs do banco de dados sofram um TRUNCATE e não gerem interferência
  */
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 class ProdutosControllerTest {
+
+    //Anotação para injetar a dependências
     @Autowired private lateinit var categoriaRepository: CategoriaRepository
     @Autowired private lateinit var produtosRepository: ProdutosRepository
     @Autowired private lateinit var mockMvc: MockMvc
     @Autowired private lateinit var objectMapper: ObjectMapper
 
+    //Endpoint principal dos produtos
     companion object{
         const val URL: String = "/api/produtos"
     }
 
+    //Deleta tudo antes de cada teste
     @BeforeEach
     fun setup(){
         produtosRepository.deleteAll()
         categoriaRepository.deleteAll()
     }
 
+    //Deleta tudo após cada teste
     @AfterEach
     fun tearDown(){
         produtosRepository.deleteAll()

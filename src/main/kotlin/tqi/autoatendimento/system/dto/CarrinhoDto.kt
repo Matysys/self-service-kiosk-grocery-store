@@ -2,8 +2,8 @@ package tqi.autoatendimento.system.dto
 
 import jakarta.validation.constraints.*
 import tqi.autoatendimento.system.entity.Carrinho
-import tqi.autoatendimento.system.entity.Categoria
 
+//Informações que serão passadas via JSON para manipular o carrinho. Validações pelo Hibernate
 class CarrinhoDto (
     @field:NotEmpty
     @field:Size(max = 30)

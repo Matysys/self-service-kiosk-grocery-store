@@ -1,15 +1,13 @@
 package tqi.autoatendimento.system.service.impl
 
 import org.springframework.stereotype.Service
-import tqi.autoatendimento.system.controller.CategoriaController
-import tqi.autoatendimento.system.entity.Categoria
 import tqi.autoatendimento.system.entity.Produtos
-import tqi.autoatendimento.system.repository.CarrinhoRepository
 import tqi.autoatendimento.system.repository.CategoriaRepository
 import tqi.autoatendimento.system.repository.ProdutosRepository
 import tqi.autoatendimento.system.service.IProdutosService
 import java.util.*
 
+//Regras de negócio para os produtos
 @Service
 class ProdutosService(private val produtosRepository: ProdutosRepository, private val categoriaRepository: CategoriaRepository): IProdutosService {
 
