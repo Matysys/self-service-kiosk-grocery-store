@@ -580,22 +580,19 @@ Agora veja como o retorno é interessante:
 ![pedido concluido](./img/pedidos_concluido.png)
 
 Vamos analisar! Ele retorna a mensagem indicando o pagamento escolhido, o código 
-de venda único para o(a) proprietário(a) saber seus pedidos, a mensagem de proce
-dimento para pegar os pedidos e o valor total da venda.
+de venda único para o(a) proprietário(a) saber seus pedidos, a mensagem de procedimento para pegar os pedidos e o valor total da venda.
 
 O valor total deu R$ 114,00
 R$ 45,00 + R$ 69,00 = R$ 114,00
 O valor veio formatado!
 
-Esse retorno seria impresso em um papel da máquina de auto-atendimento, assim se
-ria possível levar para o balcão.
+Esse retorno seria impresso em um papel da máquina de auto-atendimento, assim seria possível levar para o balcão.
 
 Aqui o pagamento já é dado como concluído, mas eu creio que uma API de pagamento 
 seria um intermediária para pagar essa compra, assim dando o valor para o(a) pro
 prietário(a).
 
-Agora outra coisa interessante aconteceu, liste os produtos novamente e olhe as qu
-antidades atuais.
+Agora outra coisa interessante aconteceu, liste os produtos novamente e olhe as quantidades atuais.
 
 ![produto com estoque removido](./img/produto_removido.png)
 
@@ -641,8 +638,7 @@ O(a) proprietário(a) verá os produtos pelo seu código de venda.
 
 # ---> CONCLUSÃO <---
 
-Projeto interessante, mesmo que embora simples, eu tentei aperfeiçoar da minha pró
-pria maneira. Eu aprendo errando, ou seja, corrigindo vários bugs e aprendendo com 
+Projeto interessante, mesmo que embora simples, eu tentei aperfeiçoar da minha própria maneira. Eu aprendo errando, ou seja, corrigindo vários bugs e aprendendo com 
 isso.
 
 Eu criei uma tabela adicional chamada *Pedidos* somente para ficar algo mais próximo da realidade, pois o(a) proprietário(a) deve conseguir visualizar quem 
@@ -654,6 +650,10 @@ de pagamento escolhida. O comprovante será impresso com um código de venda que
 ser levado no balcão, assim os produtos já serão entregues rapidamente, pois serão 
 separados imediatamente após a compra. Essa foi a minha interpretação, e eu sei que
 deve ser possível diversas abordagens diferentes, basta apenas ter criatividade e imaginação.
+
+O foco desse projeto foi totalmente na construção da API e seus endpoints, mas sempre é possível melhorar um sistema atual. Eu poderia adicionar segurança nos endpoints utilizando *Spring Security* em algum momento. 
+Git e Github são exatamente para isso, para controlar cada versão do meu projeto de acordo com cada melhoria implementada (por isso o uso da tag que fica atrelada em um commit, o que significa uma versão utilizável).
+Em um projeto em equipe, o uso de *branches* seria necessário para cada pessoa ser responsável por uma funcionalidade que depois de analisada pela pessoa responsável, sofrerá o *merge* para a *main branch* via **Pull Request**.
 
 
 
