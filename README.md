@@ -7,6 +7,8 @@ o sistema de acordo com os requisitos propostos pela TQI, eu incrementei o proje
 várias regras de negócios adicionais, 1 tabela adicional, 2 opções para criar um 
 container e todas as camadas com testes unitários feitos (68 testes no total).
 
+### Infelizmente a empresa teve um processo seletivo extremamente demorado, meu projeto sendo um dos melhores não foi considerado e recebi um retorno negativo genérico.
+
 ![maquina](./img/maquina.png)
 
 # Tecnologias usadas
